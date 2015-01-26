@@ -25,3 +25,5 @@
   prompt = false
 [diff]
   tool = Kaleidoscope
+[push]
+	default = simple
