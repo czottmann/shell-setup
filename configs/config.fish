@@ -13,7 +13,7 @@ function fish_prompt
     echo -n "|$RUBY_VERSION| "
   end
   set_color purple
-  echo -n (hostname -s)
+  echo -n ( hostname -s )
   set_color white
   echo -n " in "
   set_color green
@@ -21,14 +21,25 @@ function fish_prompt
 
   # line 2: "|{current git branch} ➔ "
   if test -d .git
-    echo -n "|"(git branch | grep '* ' | cut -f2- -d " ")"| "
+    echo -n "|"( git branch | grep '* ' | cut -f2- -d " " )"| "
   end
-  echo -n '➔ '
+  echo -n "➔ "
   set_color normal
 end
 
 
+# ### Show my external IP address
+function myip
+echo "My external IP:" ( curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+' )
+end
+
+
+# Add homebrew and node to the path
+set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin ./node_modules/.bin $HOME/bin $PATH
+
+
 # ### Aliases
+alias be "bundle exec"
 alias gpull "git pull origin"
 alias gpush "git push origin"
 alias ls "ls -Gal"
@@ -39,10 +50,6 @@ alias v "vagrant"
 # ### chruby-fish
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
-
-
-# Add homebrew and node to the path
-set -gx PATH /usr/local/bin /usr/local/sbin ./node_modules/.bin $HOME/bin $PATH
 
 
 # Set editor and git editor
