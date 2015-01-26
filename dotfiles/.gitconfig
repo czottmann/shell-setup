@@ -1,0 +1,28 @@
+[color]
+  ui = auto
+[user]
+  name = Carlo Zottmann
+  email = carlo@municode.de
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  dt = difftool
+  lg = log -p
+  wtf = !git-wtf
+  shlog = "log --pretty=\"%Cgreen%h%Creset – %Cred%ci%Creset – %s (%Cred%an%Creset)\""
+  fshow = ! sh -c 'git show --pretty="format:" --name-only $1 | grep -v "^$" | uniq' -
+  vim   = ! sh -c 'vim `git fshow $1`' -
+  mate  = ! sh -c 'mate `git fshow $1`' -
+  subl  = ! sh -c 'subl `git fshow $1`' -
+[core]
+  autocrlf = input
+  editor = /usr/local/bin/subl -w
+[difftool "Kaleidoscope"]
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[diff]
+  tool = Kaleidoscope

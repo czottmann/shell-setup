@@ -1,0 +1,55 @@
+# ### Defining the prompt
+#
+# Example output:
+#
+#     |1.9.3| Illium in /Users/carlo/Code
+#     |gh-pages| ➔
+
+function fish_prompt
+  echo
+  # line 1: "|{Ruby version}| {hostname} in {current path}"
+  if test $RUBY_VERSION
+    set_color yellow
+    echo -n "|$RUBY_VERSION| "
+  end
+  set_color purple
+  echo -n (hostname -s)
+  set_color white
+  echo -n " in "
+  set_color green
+  pwd
+
+  # line 2: "|{current git branch} ➔ "
+  if test -d .git
+    echo -n "|"(git branch | grep '* ' | cut -f2- -d " ")"| "
+  end
+  echo -n '➔ '
+  set_color normal
+end
+
+
+# ### Aliases
+alias gpull "git pull origin"
+alias gpush "git push origin"
+alias ls "ls -al"
+alias tmux "env TERM=xterm-256color tmux"
+alias v "vagrant"
+
+
+# ### chruby-fish
+source /usr/local/share/chruby/chruby.fish
+source /usr/local/share/chruby/auto.fish
+
+
+# Add homebrew and node to the path
+set -gx PATH /usr/local/bin /usr/local/sbin ./node_modules/.bin $HOME/bin $PATH
+
+
+# Set editor and git editor
+if test -f /usr/local/bin/atom
+  set -x EDITOR "/usr/local/bin/atom -w"
+  set -x GIT_EDITOR '/usr/local/bin/atom -w'
+else if -f /usr/local/bin/subl
+  set -x EDITOR "/usr/local/bin/subl -w"
+  set -x GIT_EDITOR '/usr/local/bin/subl -w'
+end
