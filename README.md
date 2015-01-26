@@ -1,8 +1,5 @@
 # Shell setup
 
-I use [fish shell](http://fishshell.com/) on OS X.  This is my simple setup for
-new machines.
-
 The included `install.sh` symlinks my `config.fish` and dotfiles from the right
 places.  Subsequent runs of `install.sh` will rename the existing files before
 symlinking.  It's quite simple, really.
