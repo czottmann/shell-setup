@@ -31,7 +31,7 @@ end
 # ### Aliases
 alias gpull "git pull origin"
 alias gpush "git push origin"
-alias ls "ls -al"
+alias ls "ls -Gal"
 alias tmux "env TERM=xterm-256color tmux"
 alias v "vagrant"
 
