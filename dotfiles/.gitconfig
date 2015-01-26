@@ -11,11 +11,10 @@
   df = diff
   dt = difftool
   lg = log -p
-  wtf = !git-wtf
   shlog = "log --pretty=\"%Cgreen%h%Creset – %Cred%ci%Creset – %s (%Cred%an%Creset)\""
   fshow = ! sh -c 'git show --pretty="format:" --name-only $1 | grep -v "^$" | uniq' -
   vim   = ! sh -c 'vim `git fshow $1`' -
-  mate  = ! sh -c 'mate `git fshow $1`' -
+  atom  = ! sh -c 'atom `git fshow $1`' -
   subl  = ! sh -c 'subl `git fshow $1`' -
 [core]
   autocrlf = input
