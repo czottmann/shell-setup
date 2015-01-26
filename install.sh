@@ -2,8 +2,10 @@
 
 # Symlinking fish config
 echo "Creating symlink to configs/config.fish in ~/.config/fish/…"
+LINKED_FILE="${HOME}/.config/fish/config.fish"
 [[ ! -d "${HOME}/.config/fish" ]] && mkdir -p
-ln -s "$(pwd)/configs/config.fish" "${HOME}/.config/fish/config.fish"
+[[ -f "${LINKED_FILE}" ]] && mv "${LINKED_FILE}" "${LINKED_FILE}.old"
+ln -s "$(pwd)/configs/config.fish" "${LINKED_FILE}"
 
 # Symlinking dotfiles
 for F in dotfiles/.*; do
