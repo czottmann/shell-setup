@@ -10,9 +10,10 @@
 // Kudos to [@hmans](http://github.com/hmans) for the initial version of this config
 // file -- it made a nice starting point.
 
-var mash = [ 'cmd', 'alt', 'ctrl' ],
-  mashMove = [ 'alt', 'ctrl' ],
-  mashMoveMore = [ 'shift', 'alt', 'ctrl' ],
+var ctrlCmdAlt = [ 'cmd', 'alt', 'ctrl' ],
+  shiftCtrlCmd = [ 'cmd', 'shift', 'ctrl' ],
+  ctrlAlt = [ 'alt', 'ctrl' ],
+  shiftCtrlAlt = [ 'shift', 'alt', 'ctrl' ],
   nudgePixels = 10,
   padding = 4,
   previousSizes = {};
@@ -22,7 +23,7 @@ var mash = [ 'cmd', 'alt', 'ctrl' ],
 //
 // My space key together with `Ctrl`+`Cmd`+`Alt` is toggling any window
 // between full screen and its initial size and position.
-api.bind( 'space', mash, function() {
+api.bind( 'space', ctrlCmdAlt, function() {
   Window.focusedWindow().toggleFullscreen();
 });
 
@@ -34,93 +35,118 @@ api.bind( 'space', mash, function() {
 // - top-right (NE)
 // - left half (E)
 // - …
-api.bind( 'pad9', mash, function() {
+api.bind( 'pad9', ctrlCmdAlt, function() {
   Window.focusedWindow().toNE();
 });
 
-api.bind( 'pad8', mash, function() {
+api.bind( 'pad8', ctrlCmdAlt, function() {
   Window.focusedWindow().toN();
 });
 
-api.bind( 'pad7', mash, function() {
+api.bind( 'pad7', ctrlCmdAlt, function() {
   Window.focusedWindow().toNW();
 });
 
-api.bind( 'pad6', mash, function() {
+api.bind( 'pad6', ctrlCmdAlt, function() {
   Window.focusedWindow().toE();
 });
 
-api.bind( 'pad4', mash, function() {
+api.bind( 'pad4', ctrlCmdAlt, function() {
   Window.focusedWindow().toW();
 });
 
-api.bind( 'pad3', mash, function() {
+api.bind( 'pad3', ctrlCmdAlt, function() {
   Window.focusedWindow().toSE();
 });
 
-api.bind( 'pad2', mash, function() {
+api.bind( 'pad2', ctrlCmdAlt, function() {
   Window.focusedWindow().toS();
 });
 
-api.bind( 'pad1', mash, function() {
+api.bind( 'pad1', ctrlCmdAlt, function() {
   Window.focusedWindow().toSW();
 });
 
-api.bind( 'pad-', mash, function() {
+api.bind( 'pad-', ctrlCmdAlt, function() {
   Window.focusedWindow().toGrid( 0.25, 0, 0.5, 1 );
 });
 
+api.bind( 'home', ctrlCmdAlt, function() {
+  Window.focusedWindow().toGrid( 0.25, 0, 0.5, 1 );
+});
+
+
 // The cursor keys together with `Ctrl`+`Cmd`+`Alt` make any window occupy any
 // half of the screen (N, E, S, W).
-api.bind( 'up', mash, function() {
+api.bind( 'up', ctrlCmdAlt, function() {
   Window.focusedWindow().toN();
 });
 
-api.bind( 'right', mash, function() {
+api.bind( 'right', ctrlCmdAlt, function() {
   Window.focusedWindow().toE();
 });
 
-api.bind( 'down', mash, function() {
+api.bind( 'down', ctrlCmdAlt, function() {
   Window.focusedWindow().toS();
 });
 
-api.bind( 'left', mash, function() {
+api.bind( 'left', ctrlCmdAlt, function() {
   Window.focusedWindow().toW();
 });
 
+
+// The cursor keys together with `Shift`+`Ctrl`+`Cmd` make any window occupy any
+// 2/3s of the screen (N, E, S, W).
+api.bind( 'up', shiftCtrlCmd, function() {
+  Window.focusedWindow().toN23();
+});
+
+api.bind( 'right', shiftCtrlCmd, function() {
+  Window.focusedWindow().toE23();
+});
+
+api.bind( 'down', shiftCtrlCmd, function() {
+  Window.focusedWindow().toS23();
+});
+
+api.bind( 'left', shiftCtrlCmd, function() {
+  Window.focusedWindow().toW23();
+});
+
+
 // The cursor keys together with `Ctrl`+`Alt` move a window.
-api.bind( 'up', mashMove, function() {
+api.bind( 'up', ctrlAlt, function() {
   Window.focusedWindow().nudgeUp();
 });
 
-api.bind( 'right', mashMove, function() {
+api.bind( 'right', ctrlAlt, function() {
   Window.focusedWindow().nudgeRight();
 });
 
-api.bind( 'down', mashMove, function() {
+api.bind( 'down', ctrlAlt, function() {
   Window.focusedWindow().nudgeDown();
 });
 
-api.bind( 'left', mashMove, function() {
+api.bind( 'left', ctrlAlt, function() {
   Window.focusedWindow().nudgeLeft();
 });
 
 
 // The cursor keys together with `Shift`+`Ctrl`+`Alt` move a window just like
 // the previous set but 5 times as fast.
-api.bind( 'up', mashMoveMore, function() {
+api.bind( 'up', shiftCtrlAlt, function() {
   Window.focusedWindow().nudgeUp( 5 );
 });
 
-api.bind( 'right', mashMoveMore, function() {
+api.bind( 'right', shiftCtrlAlt, function() {
   Window.focusedWindow().nudgeRight( 5 );
 });
 
-api.bind( 'down', mashMoveMore, function() {
+api.bind( 'down', shiftCtrlAlt, function() {
   Window.focusedWindow().nudgeDown( 5 );
 });
 
-api.bind( 'left', mashMoveMore, function() {
+api.bind( 'left', shiftCtrlAlt, function() {
   Window.focusedWindow().nudgeLeft( 5 );
 });
 
@@ -129,7 +155,7 @@ api.bind( 'left', mashMoveMore, function() {
 //
 // When working on frontend stuff I like my Sublime Text to cover the left
 // (East) half of the screen and Chrome the right (West) half.
-api.bind( '1', mash, function() {
+api.bind( '1', ctrlCmdAlt, function() {
   var chromeApp = App.findByTitle('Google Chrome'),
     chromeWindow = chromeApp && chromeApp.findWindowNotMatchingTitle('^Developer Tools -'),
     sublimeApp = App.findByTitle('Sublime Text'),
@@ -151,7 +177,7 @@ api.bind( '1', mash, function() {
 // When checking HTML/JS in Chrome I want to have my browsing window to the
 // East and my Chrome devtools window to the W, the latter not quite on full
 // height.
-api.bind( '2', mash, function() {
+api.bind( '2', ctrlCmdAlt, function() {
   var chromeApp = App.findByTitle('Google Chrome'),
     browseWindow = chromeApp && chromeApp.findWindowNotMatchingTitle('^Developer Tools -'),
     devToolsWindow = chromeApp && chromeApp.findWindowMatchingTitle('^Developer Tools -');
@@ -286,6 +312,42 @@ Window.prototype.toW = function() {
 // screen.  Returns the window instance.
 Window.prototype.toNW = function() {
   return this.toGrid( 0, 0, 0.5, 0.5 );
+};
+
+
+// #### Window#toN23()
+//
+// Convenience method, pushing the window to the top half of the screen.
+// Returns the window instance.
+Window.prototype.toN23 = function() {
+  return this.toGrid( 0, 0, 1, 0.6666 );
+};
+
+
+// #### Window#toE23()
+//
+// Convenience method, pushing the window to the right half of the screen.
+// Returns the window instance.
+Window.prototype.toE23 = function() {
+  return this.toGrid( 0.3333, 0, 0.6666, 1 );
+};
+
+
+// #### Window#toS23()
+//
+// Convenience method, pushing the window to the bottom half of the screen.
+// Returns the window instance.
+Window.prototype.toS23 = function() {
+  return this.toGrid( 0, 0.3333, 1, 0.6666 );
+};
+
+
+// #### Window#toW23()
+//
+// Convenience method, pushing the window to the left half of the screen.
+// Returns the window instance.
+Window.prototype.toW23 = function() {
+  return this.toGrid( 0, 0, 0.6666, 1 );
 };
 
 
