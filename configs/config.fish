@@ -30,12 +30,14 @@ end
 
 # ### Show my external IP address
 function myip
-echo "My external IP:" ( curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+' )
+  echo "My external IP:" ( curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+' )
 end
 
 
 # Add homebrew and node to the path
-set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin ./node_modules/.bin $HOME/bin $PATH
+if not contains /usr/local/bin $PATH
+  set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin ./node_modules/.bin $HOME/bin $PATH
+end
 
 
 # ### Aliases
