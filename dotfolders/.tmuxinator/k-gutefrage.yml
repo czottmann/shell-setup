@@ -1,0 +1,34 @@
+# ~/.tmuxinator/k-gutefrage.yml
+
+name: k-gutefrage
+root: ~/Code
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+#  - gf-responsive:
+#      layout: 488e,318x67,0,0{158x67,0,0,0,159x67,159,0[159x33,159,0,2,159x33,159,34,10]}
+#      panes:
+#        - cd gf-responsive
+#        - cd gf-responsive && grunt server
+#        - cd gf-responsive && ruby -run -e httpd dist -p5000
+
+windows:
+  - gf-trunk:
+      layout: 488e,318x67,0,0{158x67,0,0,0,159x67,159,0[159x33,159,0,2,159x33,159,34,10]}
+      panes:
+        - echo "GO."
+        - ls
+        - echo "moo"
