@@ -34,11 +34,31 @@ function myip
 end
 
 
-# Add homebrew and node to the path
+# Add homebrew folders to the path
 if not contains /usr/local/bin $PATH
-  set -gx PATH /usr/local/bin /usr/local/sbin /usr/local/share/npm/bin ./node_modules/.bin $HOME/bin $PATH
+  set -gx PATH /usr/local/bin /usr/local/sbin $HOME/bin $PATH
 end
 
+# Add node folders to the path
+if not contains /usr/local/share/npm/bin $PATH
+  set -gx PATH $PATH /usr/local/share/npm/bin ./node_modules/.bin
+end
+
+# Postgres
+set psql_path /Applications/Postgres.app/Contents/Versions/9.4/bin
+if test -d $psql_path
+  if not contains $psql_path $PATH
+    set -gx PATH $PATH $psql_path
+  end
+end
+
+# Android dev
+if test -d /Users/carlo/android-sdk-macosx
+  if not contains /Users/carlo/android-sdk-macosx/tools $PATH
+    set -gx PATH $PATH /Users/carlo/android-sdk-macosx/tools /Users/carlo/android-sdk-macosx/plattform-tools
+    set -gx ANDROID_HOME "/Users/carlo/android-sdk-macosx"
+  end
+end
 
 # ### Aliases
 alias be "bundle exec"
