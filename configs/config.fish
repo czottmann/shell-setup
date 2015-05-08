@@ -19,10 +19,8 @@ function fish_prompt
   set_color green
   pwd
 
-  # line 2: "|{current git branch} ➔ "
-  if test -d .git
-    echo -n "|"( git branch | grep '* ' | cut -f2- -d " " )"| "
-  end
+  # line 2: "({current git branch}) ➔ "
+  echo -n ( __fish_git_prompt; and echo -n " " )
   echo -n "➔ "
   set_color normal
 end
