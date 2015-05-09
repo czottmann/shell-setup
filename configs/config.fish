@@ -62,7 +62,7 @@ end
 alias be "bundle exec"
 alias gpull "git pull origin"
 alias gpush "git push origin"
-alias ls "ls -Gal"
+alias ll "ls -Gal"
 alias serve "python -m SimpleHTTPServer"
 alias tmux "env TERM=xterm-256color tmux"
 alias v "vagrant"
