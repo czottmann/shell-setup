@@ -15,9 +15,9 @@ done
 # Symlinking dotfiles
 for F in dotfiles/.*; do
   if [[ -f "$F" ]]; then
-    echo "Creating symlink: $F ➔ ${LINKED_FILE}"
     LINKED_FILE="${HOME}/$( basename ${F} )"
+    echo "Creating symlink: ${F} ➔ ${LINKED_FILE}"
     [[ -f "${LINKED_FILE}" ]] && mv "${LINKED_FILE}" "${LINKED_FILE}.old"
-    ln -s "$(pwd)/$F" "${LINKED_FILE}"
+    ln -s "$(pwd)/${F}" "${LINKED_FILE}"
   fi
 done
