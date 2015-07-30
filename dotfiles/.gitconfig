@@ -11,6 +11,7 @@
   df = diff
   dt = difftool
   lg = log -p
+  undo-commit = "reset --soft HEAD^"
   shlog = "log --pretty=\"%Cgreen%h%Creset – %Cred%ci%Creset – %s (%Cred%an%Creset)\""
   undo-commit = "reset --soft HEAD^"
   fshow = ! sh -c 'git show --pretty="format:" --name-only $1 | grep -v "^$" | uniq' -
