@@ -19,12 +19,16 @@
   subl  = ! sh -c 'subl `git fshow $1`' -
 [core]
   autocrlf = input
-  editor = /usr/local/bin/subl -w
+  editor = /usr/local/bin/atom -w
 [difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
   prompt = false
 [diff]
   tool = Kaleidoscope
 [push]
-	default = simple
+  default = simple
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
