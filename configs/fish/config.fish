@@ -60,6 +60,7 @@ end
 
 # ### Aliases
 alias be "bundle exec"
+alias dnsflush "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias gpull "git pull origin"
 alias gpush "git push origin"
 alias ll "ls -Gal"
