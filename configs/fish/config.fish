@@ -1,26 +1,37 @@
 # ### Defining the prompt
-#
-# Example output:
-#
-#     |1.9.3| Illium in /Users/carlo/Code
-#     |gh-pages| ➔
-
 function fish_prompt
   echo
-  # line 1: "|{Ruby version}| {hostname} in {current path}"
+  # line 1: "{hostname} {·|⒟} {Ruby version} · {current path}"
+  set_color purple
+  echo -n ( hostname -s )" "
+
+  set_color normal
+  if test $DESK_NAME
+    echo -n "⒟  "
+  else
+    echo -n "· "
+  end
+
   if test $RUBY_VERSION
     set_color yellow
-    echo -n "|$RUBY_VERSION| "
+    echo -n $RUBY_VERSION
+
+    set_color normal
+    echo -n " · "
   end
-  set_color purple
-  echo -n ( hostname -s )
-  set_color white
-  echo -n " in "
+
   set_color green
   pwd
 
-  # line 2: "({current git branch}) ➔ "
-  echo -n ( __fish_git_prompt; and echo -n " " )
+  # line 2: "[virtual env]({current git branch}) ➔ "
+  if set -q VIRTUAL_ENV
+    set_color green
+    echo -n "["( basename "$VIRTUAL_ENV" )"]"
+
+    set_color normal
+  end
+
+  echo -n ( __fish_git_prompt )" "
   echo -n "➔ "
   set_color normal
 end
@@ -37,10 +48,12 @@ if not contains /usr/local/bin $PATH
   set -gx PATH /usr/local/bin /usr/local/sbin $HOME/bin $PATH
 end
 
+
 # Add node folders to the path
 if not contains /usr/local/share/npm/bin $PATH
   set -gx PATH $PATH /usr/local/share/npm/bin ./node_modules/.bin
 end
+
 
 # Postgres
 set psql_path /Applications/Postgres.app/Contents/Versions/9.4/bin
@@ -50,13 +63,15 @@ if test -d $psql_path
   end
 end
 
+
 # Android dev
-if test -d /Users/carlo/android-sdk-macosx
-  if not contains /Users/carlo/android-sdk-macosx/tools $PATH
-    set -gx PATH $PATH /Users/carlo/android-sdk-macosx/tools /Users/carlo/android-sdk-macosx/plattform-tools
-    set -gx ANDROID_HOME "/Users/carlo/android-sdk-macosx"
+if test -d $HOME/android-sdk-macosx
+  if not contains $HOME/android-sdk-macosx/tools $PATH
+    set -gx PATH $PATH $HOME/android-sdk-macosx/tools $HOME/android-sdk-macosx/plattform-tools
+    set -gx ANDROID_HOME "$HOME/android-sdk-macosx"
   end
 end
+
 
 # ### Aliases
 alias be "bundle exec"
@@ -82,3 +97,11 @@ else if -f /usr/local/bin/subl
   set -x EDITOR "/usr/local/bin/subl -w"
   set -x GIT_EDITOR '/usr/local/bin/subl -w'
 end
+
+
+# Python virtualenv wrapper
+eval (python -m virtualfish)
+
+
+# Hook for desk activation
+test -n "$DESK_ENV"; and . "$DESK_ENV"
