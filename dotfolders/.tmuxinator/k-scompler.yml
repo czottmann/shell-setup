@@ -19,9 +19,9 @@ pre: export SIDEKIQ_INLINE=true
 # tmux_command: byobu
 
 windows:
-  - gf-trunk:
+  - scompler:
       layout: 488e,318x67,0,0{158x67,0,0,0,159x67,159,0[159x33,159,0,2,159x33,159,34,10]}
       panes:
-        - #
-        -
+        - 
+        - be foreman start -f Procfile.development
         -
