@@ -43,6 +43,12 @@ function myip
 end
 
 
+# ### Show all React props in a given file
+function get_react_props
+  grep "this.props." $argv | perl -lne '/^.*(this\.props\..+?)\b.*$/ && print "$1"' | sort | uniq
+end
+
+
 # Add homebrew folders to the path
 if not contains /usr/local/bin $PATH
   set -gx PATH /usr/local/bin /usr/local/sbin $HOME/bin $PATH
@@ -100,7 +106,7 @@ end
 
 
 # Python virtualenv wrapper
-eval (python -m virtualfish)
+eval (python -m virtualfish 2>&1 >> /dev/null)
 
 
 # Hook for desk activation
