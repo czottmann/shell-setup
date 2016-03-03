@@ -45,7 +45,7 @@ end
 
 # ### Show all React props in a given file
 function get_react_props
-  grep "this.props." $argv | tr "=,[]()" "\n" | perl -lne '/^.*this\.props\.([a-z\d\.]+).*$/ig && print "$1: PropTypes.any,"' | sort | uniq
+  grep "this.props." $argv | tr "=,[](){}" "\n" | perl -lne '/^.*this\.props\.([a-z\d\.]+).*$/ig && print "$1: PropTypes.any,"' | sort | uniq
 end
 
 
