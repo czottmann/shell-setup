@@ -27,6 +27,8 @@
   prompt = false
 [diff]
   tool = Kaleidoscope
+[merge]
+  tool = opendiff 
 [push]
   default = simple
 [filter "lfs"]
