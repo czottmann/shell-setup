@@ -49,6 +49,13 @@ function get_react_props
 end
 
 
+# ### "bundle exec" for node
+function npm-exec
+  set -lx PATH (npm bin) $PATH
+  eval $argv
+end
+
+
 # Add homebrew folders to the path
 if not contains /usr/local/bin $PATH
   set -gx PATH /usr/local/bin /usr/local/sbin $HOME/bin $PATH
@@ -57,7 +64,7 @@ end
 
 # Add node folders to the path
 if not contains /usr/local/share/npm/bin $PATH
-  set -gx PATH $PATH /usr/local/share/npm/bin ./node_modules/.bin
+  set -gx PATH $PATH /usr/local/share/npm/bin 
 end
 
 
@@ -106,8 +113,5 @@ end
 
 
 # Python virtualenv wrapper
-eval (python -m virtualfish 2>&1 >> /dev/null)
+# eval (python -m virtualfish 2>&1 >> /dev/null)
 
-
-# Hook for desk activation
-test -n "$DESK_ENV"; and . "$DESK_ENV"
