@@ -7,7 +7,7 @@ root: ~/Code/k-scompler/scompler
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
-pre: export SIDEKIQ_INLINE=true
+# pre: export SIDEKIQ_INLINE=true
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -23,5 +23,5 @@ windows:
       layout: 488e,318x67,0,0{158x67,0,0,0,159x67,159,0[159x33,159,0,2,159x33,159,34,10]}
       panes:
         - 
-        - be foreman start -f Procfile.development
+        - be foreman start -f Procfile.dev
         -
