@@ -57,14 +57,12 @@ end
 
 
 # Add homebrew folders to the path
-if not contains /usr/local/bin $PATH
-  set -gx PATH /usr/local/bin /usr/local/sbin $HOME/bin $PATH
-end
+set -gx PATH /usr/local/sbin $HOME/bin $PATH
 
 
 # Add node folders to the path
 if not contains /usr/local/share/npm/bin $PATH
-  set -gx PATH $PATH /usr/local/share/npm/bin 
+  set -gx PATH $PATH /usr/local/share/npm/bin
 end
 
 
@@ -115,4 +113,3 @@ end
 
 # Python virtualenv wrapper
 # eval (python -m virtualfish 2>&1 >> /dev/null)
-
