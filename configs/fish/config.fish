@@ -78,7 +78,7 @@ end
 # Android dev
 if test -d $HOME/android-sdk-macosx
   if not contains $HOME/android-sdk-macosx/tools $PATH
-    set -gx PATH $PATH $HOME/android-sdk-macosx/tools $HOME/android-sdk-macosx/plattform-tools
+    set -gx PATH $PATH $HOME/android-sdk-macosx/tools
     set -gx ANDROID_HOME "$HOME/android-sdk-macosx"
   end
 end
@@ -92,6 +92,7 @@ alias gpush "git push origin"
 alias ll "ls -Gal"
 alias ne "npm-exec"
 alias serve "python -m SimpleHTTPServer"
+alias t "tree --dirsfirst -C"
 alias tmux "env TERM=xterm-256color tmux"
 alias v "vagrant"
 
