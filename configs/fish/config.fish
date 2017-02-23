@@ -3,14 +3,7 @@ function fish_prompt
   echo
   # line 1: "{hostname} {·|⒟} {Ruby version} · {current path}"
   set_color purple
-  echo -n ( hostname -s )" "
-
-  set_color normal
-  if test $DESK_NAME
-    echo -n "⒟  "
-  else
-    echo -n "· "
-  end
+  echo -n ( hostname -s )" · "
 
   if test $RUBY_VERSION
     set_color yellow
@@ -21,7 +14,7 @@ function fish_prompt
   end
 
   set_color green
-  pwd
+  pwd | sed 's@'"$HOME"'@~@'
 
   # line 2: "[virtual env]({current git branch}) ➔ "
   if set -q VIRTUAL_ENV
@@ -34,6 +27,25 @@ function fish_prompt
   echo -n ( __fish_git_prompt )" "
   echo -n "➔ "
   set_color normal
+end
+
+
+# Ask for confirmation y/N
+function read_confirm
+  while true
+    read -l -p read_confirm_prompt confirm
+
+    switch $confirm
+      case Y y
+        return 0
+      case '' N n
+        return 1
+    end
+  end
+end
+
+function read_confirm_prompt
+  echo 'Do you want to continue? [y/N] '
 end
 
 
@@ -82,6 +94,10 @@ if test -d $HOME/android-sdk-macosx
     set -gx ANDROID_HOME "$HOME/android-sdk-macosx"
   end
 end
+
+
+# Java
+set -gx JAVA_HOME (/usr/libexec/java_home -v 1.7)
 
 
 # ### Aliases
